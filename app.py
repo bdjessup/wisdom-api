@@ -12,12 +12,12 @@ def create_app():
         wisdom_list = [line.strip().encode('utf-8').decode('unicode-escape').lstrip('-').strip().strip('"').strip() for line in wisdom_section.split('\n') if line.startswith('-') and "----" not in line]
         return wisdom_list
 
-    @app.route('/wisdom', methods=['GET'])
+    @app.route('/', methods=['GET'])
     def get_wisdom():
         wisdom_list = fetch_wisdom_list()
         return jsonify(wisdom_list)
 
-    @app.route('/wisdom/random', methods=['GET'])
+    @app.route('/random', methods=['GET'])
     def get_random_wisdom():
         wisdom_list = fetch_wisdom_list()
         random_wisdom = random.choice(wisdom_list)
